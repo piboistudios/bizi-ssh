@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../akash"
+		},
+		{
+			"path": "../bizi-ldap"
+		},
+		{
+			"path": "../../../../mongo-docker"
+		}
+	]
+}
