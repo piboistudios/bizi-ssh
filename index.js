@@ -164,7 +164,7 @@ async function addUser(user) {
 }
 
 async function grabOrGenerateKey(keyType) {
-    if (!fs.existsSync('ssh')) fs.mkdirSync('ssh');
+    if (!fs.existsSync(sshdDir)) fs.mkdirSync(sshdDir);
     const filename = `ssh_host_${keyType}_key`
     logger.info("Fetching", filename);
     try {
