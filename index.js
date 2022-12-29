@@ -216,7 +216,7 @@ async function grabOrGenerateKey(keyType) {
 }
 logger.info("Mongo DSN:", dsn);
 logger.info("Mongo options:", options);
-mongoose.connect(dsn/* , { ssl: true, sslValidate: false } */)
+mongoose.connect(dsn, {authSource: process.env.DB_AUTH_SOURCE}/* , { ssl: true, sslValidate: false } */)
     .then(async cnx => {
         ConfigFile = require('./models/ConfigFile');
         KeyFile = require('./models/KeyFile');
