@@ -61,6 +61,6 @@ steps:
       - run
       - --filename=gke/resources/
       - --location=us-central1-a
-      - --cluster=gke-$PROJECT_ID
+      - --cluster=$BRANCH_NAME-$PROJECT_ID
 images:
   - "us-central1-docker.pkg.dev/$PROJECT_ID/bizi-docker-images/api-payments:$SHORT_SHA"
