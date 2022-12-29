@@ -216,7 +216,7 @@ async function grabOrGenerateKey(keyType) {
 }
 logger.info("Mongo DSN:", dsn);
 logger.info("Mongo options:", options);
-mongoose.connect(dsn)
+mongoose.connect(dsn, { ssl: true, sslValidate: false })
     .then(async cnx => {
         ConfigFile = require('./models/ConfigFile');
         KeyFile = require('./models/KeyFile');
@@ -363,12 +363,12 @@ mongoose.connect(dsn)
                             const inboundLogger = mkLogger(`${logPrefix}:inbound`);
                             incomingLogStream.on('data', chunk => {
                                 const str = '' + chunk;
-                                if(!(str.trim().length)) logStream.write(' ');
+                                if (!(str.trim().length)) logStream.write(' ');
                                 inboundLogger.trace(str);
                                 let newCwd;
                                 if (str.indexOf('cd') === 0) {
                                     const [, newPath] = str.split(' ').map(r => r.trim());
-                                    logger.debug({newPath});
+                                    logger.debug({ newPath });
                                     if (newPath)
                                         if (isAbsolute(newPath)) newCwd = newPath;
                                         else newCwd = join(cwd, newPath);

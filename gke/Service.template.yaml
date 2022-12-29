@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{packageJson.name}}
+spec:
+  loadBalancerIP: {{ loadBalancerIp }}
+  type: LoadBalancer
+  selector:
+    app: {{packageJson.name}}
+  ports:
+  - protocol: TCP
+    port: 22
+    targetPort: 22

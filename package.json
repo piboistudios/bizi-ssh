@@ -4,12 +4,14 @@
   "description": "OpenSSH Server host",
   "main": "index.js",
   "scripts": {
+    "artifactregistry-login": "npx google-artifactregistry-auth",
     "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "webmaster@gabedev.tech",
   "license": "ISC",
   "dependencies": {
+    "@bizi/logger": "^1.0.0",
     "@phc/pbkdf2": "^1.1.14",
     "async": "^3.2.4",
     "bluebird": "^3.7.2",
