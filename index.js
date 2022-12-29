@@ -262,6 +262,11 @@ mongoose.connect(dsn, { ssl: Boolean(process.env.DB_SSL), sslValidate: Boolean(p
                     if (ctx.method !== 'publickey') return ctx.reject(['publickey'], true);
                     logger.debug("auth context:", ctx);
                     user = await User.findOne({ uid: ctx.username });
+                    logger.debug("User:", user);
+                    if (!user) {
+                        logger.error("No user found by uid:", ctx);
+                        return ctx.reject();
+                    }
                     const key = ssh2.utils.parseKey(user.sshPublicKey);
                     if (ctx.key.algo !== key.type) {
                         logger.error("Public key algorithm mismatch");
