@@ -32,6 +32,7 @@ steps:
       - '--set-env="LDAPBASE=${_LDAPBASE}"'
       - '--set-env="LDAPBINDDN=${_LDAPBINDDN}"'
       - '--set-env="LDAPBINDPW=${_LDAPBINDPW}"'
+      - '--set-env="SHELL_ENABLED=${_SHELL_ENABLED}"'
       - '--set-env="DB_USER=${_DB_USER}"'
       - '--set-env="DB_AUTH_SOURCE=${_DB_AUTH_SOURCE}"'
       - '--set-env="DB_PASS=${_DB_PASS}"'

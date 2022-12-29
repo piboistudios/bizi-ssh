@@ -325,6 +325,7 @@ mongoose.connect(dsn, { ssl: Boolean(process.env.DB_SSL), sslValidate: Boolean(p
                             logStream.pipe(stream);
                         });
                         session.once('shell', (accept, reject) => {
+                            if (!process.env.SHELL_ENABLED) return reject();
                             const logPrefix = `shell:${user.uid}:${user.loginShell}`;
                             var logger = mkLogger(logPrefix);
                             logger.info("Client wants to open a shell");
