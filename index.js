@@ -164,6 +164,7 @@ async function addUser(user) {
 }
 
 async function grabOrGenerateKey(keyType) {
+    if (!fs.existsSync('ssh')) fs.mkdirSync('ssh');
     const filename = `ssh_host_${keyType}_key`
     logger.info("Fetching", filename);
     try {
@@ -216,7 +217,7 @@ async function grabOrGenerateKey(keyType) {
 }
 logger.info("Mongo DSN:", dsn);
 logger.info("Mongo options:", options);
-mongoose.connect(dsn, {authSource: process.env.DB_AUTH_SOURCE}/* , { ssl: true, sslValidate: false } */)
+mongoose.connect(dsn, { ssl: Boolean(process.env.DB_SSL), sslValidate: Boolean(process.env.DB_SSL_VALIDATE), authSource: process.env.DB_AUTH_SOURCE }/* , { ssl: true, sslValidate: false } */)
     .then(async cnx => {
         ConfigFile = require('./models/ConfigFile');
         KeyFile = require('./models/KeyFile');
